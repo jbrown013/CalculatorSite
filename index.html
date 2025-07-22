@@ -254,8 +254,8 @@
             return select;
         };
 
-        const converterCard = document.querySelector('.glass-card');
-        converterCard.innerHTML = `
+        const converterContainer = document.querySelector('.glass-card');
+        const weightConverterHTML = `
             <div class="flex flex-col md:flex-row items-center gap-4">
                 <div class="flex flex-col w-full">
                     <input id="from-value" type="number" class="form-input-custom w-full rounded-xl h-14 p-4 text-base" placeholder="Value">
@@ -275,9 +275,45 @@
                   <span class="truncate">Convert</span>
                 </button>
             </div>
+            <div class="mt-6">
+                <h4 class="text-lg font-bold mb-2 text-center">Add Custom Unit</h4>
+                <div class="flex gap-4">
+                    <input id="custom-unit-name" type="text" class="form-input-custom w-full rounded-md" placeholder="Unit Name">
+                    <input id="custom-unit-value" type="number" class="form-input-custom w-full rounded-md" placeholder="Value in kg">
+                    <button id="add-custom-unit-btn" class="button-accent rounded-md px-4 text-white font-bold">Add</button>
+                </div>
+            </div>
         `;
+        converterContainer.innerHTML = weightConverterHTML;
         document.getElementById('from-value').addEventListener('input', updateConverter);
+        document.getElementById('from-unit').addEventListener('change', updateConverter);
+        document.getElementById('to-unit').addEventListener('change', updateConverter);
         document.getElementById('convert-btn').addEventListener('click', updateConverter);
+
+        document.getElementById('add-custom-unit-btn').addEventListener('click', () => {
+            const unitName = document.getElementById('custom-unit-name').value;
+            const unitValue = parseFloat(document.getElementById('custom-unit-value').value);
+
+            if (unitName && !isNaN(unitValue)) {
+                conversionFactors[unitName] = unitValue;
+
+                const fromUnitSelector = document.getElementById('from-unit');
+                const toUnitSelector = document.getElementById('to-unit');
+
+                const newOptionFrom = document.createElement('option');
+                newOptionFrom.value = unitName;
+                newOptionFrom.textContent = unitName;
+                fromUnitSelector.appendChild(newOptionFrom);
+
+                const newOptionTo = document.createElement('option');
+                newOptionTo.value = unitName;
+                newOptionTo.textContent = unitName;
+                toUnitSelector.appendChild(newOptionTo);
+
+                document.getElementById('custom-unit-name').value = '';
+                document.getElementById('custom-unit-value').value = '';
+            }
+        });
 
         const updateSlider = (kgValue) => {
           const percentage = Math.min((kgValue / MAX_SLIDER_VAL) * 100, 100);
