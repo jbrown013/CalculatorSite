@@ -108,10 +108,10 @@
           </div>
           <nav class="flex flex-1 justify-end gap-8">
             <div class="hidden md:flex items-center gap-9 text-sm font-medium" style="color: var(--text-secondary);">
-              <a href="#" class="hover:text-white transition-colors">Home</a>
-              <a href="#" class="hover:text-white transition-colors">Converters</a>
-              <a href="#" class="hover:text-white transition-colors">About</a>
-              <a href="#" class="hover:text-white transition-colors">Contact</a>
+              <a href="index.html" class="hover:text-white transition-colors">Home</a>
+              <a href="converters.html" class="hover:text-white transition-colors">Converters</a>
+              <a href="about.html" class="hover:text-white transition-colors">About</a>
+              <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
             </div>
             <div class="flex gap-2">
               <button class="button-secondary flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 text-sm font-bold leading-normal tracking-[0.015em]">
@@ -297,60 +297,6 @@
           }
         };
 
-        // --- Slider Drag Logic ---
-        let isDragging = false;
-        const sliderTrack = document.getElementById('slider-track');
-
-        const handleSliderMove = (e) => {
-            if (!isDragging) return;
-            const rect = sliderTrack.getBoundingClientRect();
-            let offsetX;
-            if (e.type === 'touchmove') {
-                offsetX = e.touches[0].clientX - rect.left;
-            } else {
-                offsetX = e.clientX - rect.left;
-            }
-
-            const percentage = Math.max(0, Math.min(100, (offsetX / rect.width) * 100));
-            const kgValue = (percentage / 100) * MAX_SLIDER_VAL;
-
-            kgInput.value = kgValue.toFixed(2);
-            updateConverter('kg', kgInput.value);
-        };
-
-        const startDragging = (e) => {
-            isDragging = true;
-            sliderTrack.classList.add('dragging');
-            handleSliderMove(e);
-        };
-
-        const stopDragging = () => {
-            isDragging = false;
-            sliderTrack.classList.remove('dragging');
-        };
-
-        sliderTrack.addEventListener('mousedown', startDragging);
-        document.addEventListener('mousemove', handleSliderMove);
-        document.addEventListener('mouseup', stopDragging);
-
-        sliderTrack.addEventListener('touchstart', startDragging);
-        document.addEventListener('touchmove', handleSliderMove);
-        document.addEventListener('touchend', stopDragging);
-
-
-        // --- Event Listeners ---
-        kgInput.addEventListener('input', (e) => updateConverter('kg', e.target.value));
-        lbsInput.addEventListener('input', (e) => updateConverter('lbs', e.target.value));
-        convertBtn.addEventListener('click', () => {
-          if (kgInput.value) {
-            updateConverter('kg', kgInput.value);
-          } else if (lbsInput.value) {
-            updateConverter('lbs', lbsInput.value);
-          }
-        });
-
-        // --- Initial state ---
-        updateConverter('kg', '0');
 
         // --- Mock Articles ---
         const articles = [
@@ -478,20 +424,6 @@
             });
         });
         
-        // --- Navigation ---
-        const navLinks = {
-            "Home": "index.html",
-            "Converters": "converters.html",
-            "About": "about.html",
-            "Contact": "contact.html"
-        };
-
-        document.querySelectorAll('header nav a').forEach(link => {
-            const page = link.textContent.trim();
-            if (navLinks[page]) {
-                link.href = navLinks[page];
-            }
-        });
 
 
         // --- Dropdown Functionality ---
@@ -518,8 +450,8 @@
         dropdownContainer.appendChild(dropdown2);
         dropdownContainer.appendChild(dropdown3);
 
-        const converterCard = document.querySelector('.glass-card');
-        converterCard.parentNode.insertBefore(dropdownContainer, converterCard.nextSibling);
+        const articlesSection = document.getElementById('articles-section');
+        articlesSection.parentNode.insertBefore(dropdownContainer, articlesSection);
 
         dropdown3.addEventListener('change', (e) => {
             if (e.target.value === 'Display Mode: Dark') {
