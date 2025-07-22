@@ -318,6 +318,47 @@
           }
         };
 
+        // --- Slider Drag Logic ---
+        let isDragging = false;
+        const sliderTrack = document.getElementById('slider-track');
+
+        const handleSliderMove = (e) => {
+            if (!isDragging) return;
+            const rect = sliderTrack.getBoundingClientRect();
+            let offsetX;
+            if (e.type === 'touchmove') {
+                offsetX = e.touches[0].clientX - rect.left;
+            } else {
+                offsetX = e.clientX - rect.left;
+            }
+
+            const percentage = Math.max(0, Math.min(100, (offsetX / rect.width) * 100));
+            const kgValue = (percentage / 100) * MAX_SLIDER_VAL;
+
+            kgInput.value = kgValue.toFixed(2);
+            updateConverter('kg', kgInput.value);
+        };
+
+        const startDragging = (e) => {
+            isDragging = true;
+            sliderTrack.classList.add('dragging');
+            handleSliderMove(e);
+        };
+
+        const stopDragging = () => {
+            isDragging = false;
+            sliderTrack.classList.remove('dragging');
+        };
+
+        sliderTrack.addEventListener('mousedown', startDragging);
+        document.addEventListener('mousemove', handleSliderMove);
+        document.addEventListener('mouseup', stopDragging);
+
+        sliderTrack.addEventListener('touchstart', startDragging);
+        document.addEventListener('touchmove', handleSliderMove);
+        document.addEventListener('touchend', stopDragging);
+
+
         // --- Event Listeners ---
         kgInput.addEventListener('input', (e) => updateConverter('kg', e.target.value));
         lbsInput.addEventListener('input', (e) => updateConverter('lbs', e.target.value));
@@ -329,36 +370,189 @@
           }
         });
 
+        // --- Initial state ---
+        updateConverter('kg', '0');
+
         // --- User Review Interaction ---
         document.querySelectorAll('[data-review-action]').forEach((button) => {
-          button.addEventListener('click',() => {
-              const parent = button.closest('.flex.gap-4');
-              if (button.hasAttribute('data-clicked')) return;
-              
-              const countEl = button.querySelector('[data-review-count]');
-              let currentCount = parseInt(countEl.textContent, 10);
-              countEl.textContent = currentCount + 1;
-              
-              parent.querySelectorAll('[data-review-action]').forEach(btn => {
-                btn.setAttribute('data-clicked', 'true');
-                btn.style.cursor = 'not-allowed';
-                btn.style.opacity = '0.6';
-              });
-            },{ once: true });
-        });
-        
-        // --- Placeholder Functionality for Nav Links ---
-        document.querySelectorAll('a[href="#"]').forEach((link) => {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert(`Navigation to "${link.textContent.trim()}" is a placeholder.`);
+          button.addEventListener('click', () => {
+              const action = button.getAttribute('data-review-action');
+              const reviewCard = button.closest('.review-card');
+              const likeBtn = reviewCard.querySelector('[data-review-action="like"]');
+              const dislikeBtn = reviewCard.querySelector('[data-review-action="dislike"]');
+              const likeCountEl = likeBtn.querySelector('[data-review-count="likes"]');
+              const dislikeCountEl = dislikeBtn.querySelector('[data-review-count="dislikes"]');
+              let likeCount = parseInt(likeCountEl.textContent);
+              let dislikeCount = parseInt(dislikeCountEl.textContent);
+
+              if (button.classList.contains('active')) {
+                  // User is undoing their action
+                  if (action === 'like') {
+                      likeCountEl.textContent = likeCount - 1;
+                  } else {
+                      dislikeCountEl.textContent = dislikeCount - 1;
+                  }
+                  button.classList.remove('active');
+              } else {
+                  // User is casting a new vote
+                  if (action === 'like') {
+                      likeCountEl.textContent = likeCount + 1;
+                      if (dislikeBtn.classList.contains('active')) {
+                          dislikeCountEl.textContent = dislikeCount - 1;
+                          dislikeBtn.classList.remove('active');
+                      }
+                  } else { // dislike
+                      dislikeCountEl.textContent = dislikeCount + 1;
+                      if (likeBtn.classList.contains('active')) {
+                          likeCountEl.textContent = likeCount - 1;
+                          likeBtn.classList.remove('active');
+                      }
+                  }
+                  button.classList.add('active');
+              }
           });
         });
         
-        // --- Placeholder for Header Buttons ---
-        document.querySelector('button > span.truncate')?.parentElement.addEventListener('click', () => alert('Language selection is a placeholder.'));
-        document.querySelector('div[data-icon="Gear"]')?.parentElement.addEventListener('click', () => alert('Settings panel is a placeholder.'));
+        // --- Navigation ---
+        const navLinks = {
+            "Home": "index.html",
+            "Converters": "converters.html",
+            "About": "about.html",
+            "Contact": "contact.html"
+        };
 
+        document.querySelectorAll('header nav a').forEach(link => {
+            const page = link.textContent.trim();
+            if (navLinks[page]) {
+                link.href = navLinks[page];
+            }
+        });
+
+        // --- Search Functionality ---
+        const searchInput = document.createElement('input');
+        searchInput.setAttribute('type', 'search');
+        searchInput.setAttribute('placeholder', 'Search articles and resources');
+        searchInput.classList.add('form-input-custom', 'w-full', 'rounded-full', 'h-10', 'px-4', 'text-sm');
+
+        const searchBarContainer = document.createElement('div');
+        searchBarContainer.classList.add('w-full', 'max-w-md', 'mx-auto', 'my-8');
+        searchBarContainer.appendChild(searchInput);
+
+        const mainElement = document.querySelector('main');
+        mainElement.insertBefore(searchBarContainer, mainElement.children[1]);
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const articles = document.querySelectorAll('.review-card'); // Using review cards as dummy articles
+
+            articles.forEach(article => {
+                const textContent = article.textContent.toLowerCase();
+                if (textContent.includes(searchTerm)) {
+                    article.style.display = 'flex';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        });
+
+        // --- Dropdown Functionality ---
+        const dropdownContainer = document.createElement('div');
+        dropdownContainer.classList.add('flex', 'justify-center', 'gap-4', 'my-4');
+        
+        const createDropdown = (id, options) => {
+            const select = document.createElement('select');
+            select.id = id;
+            select.classList.add('form-input-custom', 'rounded-md');
+            options.forEach(optionText => {
+                const option = document.createElement('option');
+                option.textContent = optionText;
+                select.appendChild(option);
+            });
+            return select;
+        };
+
+        const dropdown1 = createDropdown('dropdown1', ['Setting 1', 'Setting 2', 'Setting 3']);
+        const dropdown2 = createDropdown('dropdown2', ['Option A', 'Option B', 'Option C']);
+        const dropdown3 = createDropdown('dropdown3', ['Display Mode: Light', 'Display Mode: Dark']);
+
+        dropdownContainer.appendChild(dropdown1);
+        dropdownContainer.appendChild(dropdown2);
+        dropdownContainer.appendChild(dropdown3);
+
+        const converterCard = document.querySelector('.glass-card');
+        converterCard.parentNode.insertBefore(dropdownContainer, converterCard.nextSibling);
+
+        dropdown3.addEventListener('change', (e) => {
+            if (e.target.value === 'Display Mode: Dark') {
+                document.body.style.setProperty('--bg-primary', 'rgb(31, 25, 42)');
+                document.body.style.setProperty('--text-primary', 'rgb(225, 217, 237)');
+            } else {
+                document.body.style.setProperty('--bg-primary', 'rgb(240, 240, 240)');
+                document.body.style.setProperty('--text-primary', 'rgb(0, 0, 0)');
+            }
+        });
+
+        // --- FAQ Accordion ---
+        const faqContainer = document.createElement('section');
+        faqContainer.classList.add('w-full', 'max-w-2xl', 'mx-auto', 'mt-12');
+        faqContainer.innerHTML = `
+            <h3 class="text-2xl font-bold tracking-tight text-center mb-6" style="color: var(--text-primary);">Frequently Asked Questions</h3>
+            <div class="space-y-4">
+                <div class="faq-item glass-card rounded-lg p-4 cursor-pointer">
+                    <div class="faq-question font-medium flex justify-between items-center">
+                        <span>How accurate is the conversion?</span>
+                        <span class="faq-icon transform transition-transform duration-300">-</span>
+                    </div>
+                    <div class="faq-answer mt-2 text-sm" style="color: var(--text-secondary); display: none;">
+                        Our converter uses the standard international conversion factor of 2.20462262185 to ensure high accuracy. Results are rounded to three decimal places for convenience.
+                    </div>
+                </div>
+                <div class="faq-item glass-card rounded-lg p-4 cursor-pointer">
+                    <div class="faq-question font-medium flex justify-between items-center">
+                        <span>Can I convert other units besides kilograms and pounds?</span>
+                        <span class="faq-icon transform transition-transform duration-300">+</span>
+                    </div>
+                    <div class="faq-answer mt-2 text-sm" style="color: var(--text-secondary); display: none;">
+                        Currently, this tool is specialized for kilograms and pounds. We are working on adding more weight and mass units in the future. Check our 'Converters' page for other available tools.
+                    </div>
+                </div>
+            </div>
+        `;
+        mainElement.appendChild(faqContainer);
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('.faq-icon');
+
+            question.addEventListener('click', () => {
+                const isVisible = answer.style.display === 'block';
+                answer.style.display = isVisible ? 'none' : 'block';
+                icon.textContent = isVisible ? '+' : '-';
+            });
+        });
+
+
+        // --- Header Button Functionality ---
+        const languageButton = document.querySelector('button > span.truncate')?.parentElement;
+        const settingsButton = document.querySelector('div[data-icon="Gear"]')?.parentElement;
+
+        let currentLanguage = 0;
+        const languages = ['English', 'Español', 'Français'];
+        languageButton.addEventListener('click', () => {
+            currentLanguage = (currentLanguage + 1) % languages.length;
+            languageButton.querySelector('span').textContent = languages[currentLanguage];
+        });
+
+        settingsButton.addEventListener('click', () => {
+            const settingsPanel = document.querySelector('.dropdown-container');
+            if (settingsPanel) {
+                const isVisible = settingsPanel.style.display === 'flex';
+                settingsPanel.style.display = isVisible ? 'none' : 'flex';
+            } else {
+                alert('Settings panel not found!');
+            }
+        });
       });
     </script>
   </body>
