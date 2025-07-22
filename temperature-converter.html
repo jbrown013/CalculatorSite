@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=1" />
+    <meta name="description" content="Aesthetic and functional temperature converter." />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Epilogue:wght@400;500;700;900&family=Inter:wght@400;500;700"
+    />
+
+    <title>Temperature Converter | Aesthetic Converter</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6h18M12 2v20M5 6l-2 2a10 10 0 0 0 18 0l-2-2'%3E%3C/path%3E%3C/svg%3E" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      :root {
+        --bg-primary: rgb(31, 25, 42);
+        --bg-secondary: rgba(43, 37, 54, 0.5);
+        --text-primary: rgb(225, 217, 237);
+        --text-secondary: rgb(196, 187, 211);
+        --accent-violet: rgb(107, 33, 239);
+        --border-color: rgba(196, 187, 211, 0.2);
+      }
+      body {
+        background-color: var(--bg-primary);
+        background-image: radial-gradient(circle at 50% 0%, rgba(107, 33, 239, 0.15) 0%, transparent 40%);
+        font-family: 'Inter', 'Epilogue', sans-serif;
+        color: var(--text-primary);
+      }
+      .glass-card {
+        background-color: var(--bg-secondary);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 8px 32px 0 var(--shadow-color);
+      }
+      .form-input-custom {
+        background-color: rgba(31, 25, 42, 0.7) !important;
+        border: 1px solid var(--border-color) !important;
+        color: var(--text-primary) !important;
+      }
+      .button-accent {
+        background-color: var(--accent-violet);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col">
+      <header class="flex items-center justify-between whitespace-nowrap border-b border-solid px-10 py-4" style="border-color: var(--border-color);">
+          <div class="flex items-center gap-4 text-white">
+            <div class="size-8 text-violet-400">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M12 2v20M5 6l-2 2a10 10 0 0 0 18 0l-2-2"></path></svg>
+            </div>
+            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]" style="color: var(--text-primary);">kg to pounds converter</h2>
+          </div>
+          <nav class="flex flex-1 justify-end gap-8">
+            <div class="hidden md:flex items-center gap-9 text-sm font-medium" style="color: var(--text-secondary);">
+              <a href="index.html" class="hover:text-white transition-colors">Home</a>
+              <a href="converters.html" class="hover:text-white transition-colors">Converters</a>
+              <a href="about.html" class="hover:text-white transition-colors">About</a>
+              <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+            </div>
+          </nav>
+        </header>
+        <main class="flex flex-1 justify-center py-5 px-4 md:px-10">
+          <section class="layout-content-container flex flex-col max-w-4xl w-full mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="tracking-tight text-4xl md:text-5xl font-extrabold leading-tight px-4 pb-3 pt-5" style="color: var(--text-primary);">Temperature Converter</h1>
+                <p class="text-lg" style="color: var(--text-secondary);">Convert between Celsius, Fahrenheit, and Kelvin.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 md:p-8 w-full max-w-lg mx-auto">
+              <div class="flex flex-col md:flex-row items-center gap-4">
+                  <div class="flex flex-col w-full">
+                      <input id="from-value" type="number" class="form-input-custom w-full rounded-xl h-14 p-4 text-base" placeholder="Value">
+                      <select id="from-unit" class="form-input-custom rounded-md mt-2">
+                          <option value="celsius">Celsius</option>
+                          <option value="fahrenheit">Fahrenheit</option>
+                          <option value="kelvin">Kelvin</option>
+                      </select>
+                  </div>
+                  <div class="text-2xl font-bold" style="color: var(--text-secondary);">⇌</div>
+                  <div class="flex flex-col w-full">
+                      <input id="to-value" type="number" class="form-input-custom w-full rounded-xl h-14 p-4 text-base" placeholder="Result" readonly>
+                      <select id="to-unit" class="form-input-custom rounded-md mt-2">
+                          <option value="celsius">Celsius</option>
+                          <option value="fahrenheit" selected>Fahrenheit</option>
+                          <option value="kelvin">Kelvin</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="flex px-4 py-5 justify-center">
+                  <button id="convert-btn" class="button-accent flex w-full md:w-auto min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 text-white text-base font-bold">
+                      <span class="truncate">Convert</span>
+                  </button>
+              </div>
+            </div>
+          </section>
+        </main>
+    </div>
+    <script>
+      const fromValue = document.getElementById('from-value');
+      const toValue = document.getElementById('to-value');
+      const fromUnit = document.getElementById('from-unit');
+      const toUnit = document.getElementById('to-unit');
+      const convertBtn = document.getElementById('convert-btn');
+
+      const convert = () => {
+        const from = fromUnit.value;
+        const to = toUnit.value;
+        const value = parseFloat(fromValue.value);
+
+        if(isNaN(value)) {
+          toValue.value = "";
+          return;
+        }
+
+        let celsius;
+        if (from === 'celsius') {
+          celsius = value;
+        } else if (from === 'fahrenheit') {
+          celsius = (value - 32) * 5/9;
+        } else if (from === 'kelvin') {
+          celsius = value - 273.15;
+        }
+
+        let result;
+        if (to === 'celsius') {
+          result = celsius;
+        } else if (to === 'fahrenheit') {
+          result = (celsius * 9/5) + 32;
+        } else if (to === 'kelvin') {
+          result = celsius + 273.15;
+        }
+
+        toValue.value = result.toFixed(2);
+      };
+
+      fromValue.addEventListener('input', convert);
+      fromUnit.addEventListener('change', convert);
+      toUnit.addEventListener('change', convert);
+      convertBtn.addEventListener('click', convert);
+    </script>
+  </body>
+</html>

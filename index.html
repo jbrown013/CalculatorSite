@@ -13,8 +13,8 @@
       href="https://fonts.googleapis.com/css2?display=swap&family=Epilogue:wght@400;500;700;900&family=Inter:wght@400;500;700"
     />
 
-    <title>Advanced Weight Converter | Kilograms to Pounds</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <title>kg to pounds converter</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6h18M12 2v20M5 6l-2 2a10 10 0 0 0 18 0l-2-2'%3E%3C/path%3E%3C/svg%3E" />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style>
@@ -101,12 +101,10 @@
       <div class="layout-container flex h-full grow flex-col">
         <header class="flex items-center justify-between whitespace-nowrap border-b border-solid px-10 py-4" style="border-color: var(--border-color);">
           <div class="flex items-center gap-4 text-white">
-            <div class="size-6 text-violet-400">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
-              </svg>
+            <div class="size-8 text-violet-400">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M12 2v20M5 6l-2 2a10 10 0 0 0 18 0l-2-2"></path></svg>
             </div>
-            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]" style="color: var(--text-primary);">Aesthetic Converter</h2>
+            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]" style="color: var(--text-primary);">kg to pounds converter</h2>
           </div>
           <nav class="flex flex-1 justify-end gap-8">
             <div class="hidden md:flex items-center gap-9 text-sm font-medium" style="color: var(--text-secondary);">
@@ -183,62 +181,9 @@
               <p id="results-text" class="text-base font-normal pb-3 pt-1 text-center" style="color: var(--text-secondary);">Results will appear here.</p>
             </div>
             
-            <h3 class="text-2xl font-bold tracking-tight px-4 pb-4 pt-12 text-center" style="color: var(--text-primary);">User Reviews</h3>
-            <div class="grid md:grid-cols-2 gap-6 p-4">
-              <div class="review-card flex flex-col gap-4 rounded-xl p-6">
-                <div class="flex items-center gap-3">
-                  <img class="rounded-full size-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoecV2KhWFXTeIQZe2TskX6qHUZjt9FqQPui-deTC6mKVOA5yBjJDtGQjm1gLOg-rqXczYS-N9YunG9IChVT6Qa4lT9OtP8Ik3L8dze0ATpMVcDeGPb81DHt_xt66s1mnKgN6GwWos0Y3p9XS48xfp_1LeGx760RBB1CmK8K65AYnJlA5MVEKvQRZ2dC8Z9nj5BFqYIbQk3-9WNDdyzaF_IlAakY_7gKi3l9_dLQLtwWDPLkgshI7TB5gkNVWqQ-9OE_2YGrbpMnA" alt="Avatar of Ethan Carter"/>
-                  <div>
-                    <p class="font-medium leading-normal" style="color: var(--text-primary);">Ethan Carter</p>
-                    <p class="text-sm font-normal leading-normal" style="color: var(--text-secondary);">2023-09-15</p>
-                  </div>
-                </div>
-                <div class="flex gap-0.5">
-                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
-                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
-                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
-                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
-                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
-                </div>
-                <p class="text-base font-normal leading-relaxed" style="color: var(--text-secondary);">This converter is incredibly accurate and easy to use. I needed it for my international travel, and it worked perfectly!</p>
-                <div class="flex gap-4 mt-auto" style="color: var(--text-secondary);">
-                  <button data-review-action="like" class="flex items-center gap-2 hover:text-white transition-colors">
-                    <div class="text-inherit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path></svg></div>
-                    <p data-review-count="likes" class="text-inherit">10</p>
-                  </button>
-                  <button data-review-action="dislike" class="flex items-center gap-2 hover:text-white transition-colors">
-                    <div class="text-inherit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path></svg></div>
-                    <p data-review-count="dislikes" class="text-inherit">1</p>
-                  </button>
-                </div>
-              </div>
-              <div class="review-card flex flex-col gap-4 rounded-xl p-6">
-                 <div class="flex items-center gap-3">
-                  <img class="rounded-full size-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPEBvAFSFXd47-7OBgZBXR9F24FU2qngsQJCqNI-UA9uruBnVZtiSmzkCT1499pi3pukLA808saL4BrMs36rMAjj0XTP2xTNrvTDmsIpwMVfOI2ev9bqZYhi1lPMW-dvsKkuo_fBV48LJ6ciX3galS_wAZ17jJwwVa8GhVmHnAKVeae3ANMyHeW0TwTwJ7nm7BdVQifVr8Q-YCIKVu2UDaahvbXDt0CFsroAbBrMkZP_Q7Y_sGZ2HlRsL6rCgd9QbgAGb1yf2R1d4" alt="Avatar of Sophia Bennett"/>
-                  <div>
-                    <p class="font-medium leading-normal" style="color: var(--text-primary);">Sophia Bennett</p>
-                    <p class="text-sm font-normal leading-normal" style="color: var(--text-secondary);">2023-10-20</p>
-                  </div>
-                </div>
-                <div class="flex gap-0.5">
-                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
-                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
-                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
-                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
-                </div>
-                <p class="text-base font-normal leading-relaxed" style="color: var(--text-secondary);">A reliable tool for quick conversions. The interface is clean, and the results are consistent.</p>
-                <div class="flex gap-4 mt-auto" style="color: var(--text-secondary);">
-                  <button data-review-action="like" class="flex items-center gap-2 hover:text-white transition-colors">
-                    <div class="text-inherit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path></svg></div>
-                    <p data-review-count="likes" class="text-inherit">8</p>
-                  </button>
-                  <button data-review-action="dislike" class="flex items-center gap-2 hover:text-white transition-colors">
-                    <div class="text-inherit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path></svg></div>
-                    <p data-review-count="dislikes" class="text-inherit">2</p>
-                  </button>
-                </div>
-              </div>
-            </div>
+            <div id="articles-section" class="w-full max-w-4xl mx-auto mt-12"></div>
+
+            <div id="search-faq-section" class="w-full max-w-2xl mx-auto mt-12"></div>
           </section>
         </main>
         <footer class="w-full mt-12 py-8 border-t" style="border-color: var(--border-color);">
@@ -268,37 +213,71 @@
         const sliderValueDesktop = document.getElementById('slider-value-desktop');
         const sliderValueMobile = document.getElementById('slider-value-mobile');
 
-        // --- Core Conversion Functions ---
-        const convertKgToLbs = (kg) => (kg * KG_TO_LBS_FACTOR).toFixed(3);
-        const convertLbsToKg = (lbs) => (lbs / KG_TO_LBS_FACTOR).toFixed(3);
-
-        // --- Update UI Function ---
-        const updateConverter = (source, value) => {
-          let kg = 0;
-          let lbs = 0;
-
-          const numValue = parseFloat(value);
-          if (isNaN(numValue) || numValue < 0) {
-            if (source === 'kg') lbsInput.value = '';
-            else kgInput.value = '';
-            updateSlider(0);
-            updateResultsText(0,0);
-            return;
-          }
-
-          if (source === 'kg') {
-            kg = numValue;
-            lbs = convertKgToLbs(kg);
-            lbsInput.value = lbs;
-          } else if (source === 'lbs') {
-            lbs = numValue;
-            kg = convertLbsToKg(lbs);
-            kgInput.value = kg;
-          }
-
-          updateSlider(kg);
-          updateResultsText(kg, lbs);
+        // --- Enhanced Conversion Logic ---
+        const conversionFactors = {
+            'g': 0.001,
+            'kg': 1,
+            'lbs': 0.453592,
+            'stone': 6.35029
         };
+
+        const updateConverter = () => {
+            const fromUnit = document.getElementById('from-unit').value;
+            const toUnit = document.getElementById('to-unit').value;
+            const fromValue = parseFloat(document.getElementById('from-value').value);
+
+            if (isNaN(fromValue)) {
+                document.getElementById('to-value').value = '';
+                return;
+            }
+
+            const valueInKg = fromValue * conversionFactors[fromUnit];
+            const convertedValue = valueInKg / conversionFactors[toUnit];
+
+            document.getElementById('to-value').value = convertedValue.toFixed(3);
+        };
+
+        const createUnitSelector = (id, selectedUnit) => {
+            const select = document.createElement('select');
+            select.id = id;
+            select.classList.add('form-input-custom', 'rounded-md');
+            for (const unit in conversionFactors) {
+                const option = document.createElement('option');
+                option.value = unit;
+                option.textContent = unit;
+                if (unit === selectedUnit) {
+                    option.selected = true;
+                }
+                select.appendChild(option);
+            }
+            select.addEventListener('change', updateConverter);
+            return select;
+        };
+
+        const converterCard = document.querySelector('.glass-card');
+        converterCard.innerHTML = `
+            <div class="flex flex-col md:flex-row items-center gap-4">
+                <div class="flex flex-col w-full">
+                    <input id="from-value" type="number" class="form-input-custom w-full rounded-xl h-14 p-4 text-base" placeholder="Value">
+                    ${createUnitSelector('from-unit', 'kg').outerHTML}
+                </div>
+                <div class="text-2xl font-bold" style="color: var(--text-secondary);">⇌</div>
+                <div class="flex flex-col w-full">
+                    <input id="to-value" type="number" class="form-input-custom w-full rounded-xl h-14 p-4 text-base" placeholder="Result" readonly>
+                    ${createUnitSelector('to-unit', 'lbs').outerHTML}
+                </div>
+            </div>
+            <div class="flex px-4 py-5 justify-center">
+                <button
+                  id="convert-btn"
+                  class="button-accent flex w-full md:w-auto min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 text-white text-base font-bold"
+                >
+                  <span class="truncate">Convert</span>
+                </button>
+            </div>
+        `;
+        document.getElementById('from-value').addEventListener('input', updateConverter);
+        document.getElementById('convert-btn').addEventListener('click', updateConverter);
 
         const updateSlider = (kgValue) => {
           const percentage = Math.min((kgValue / MAX_SLIDER_VAL) * 100, 100);
@@ -373,44 +352,130 @@
         // --- Initial state ---
         updateConverter('kg', '0');
 
-        // --- User Review Interaction ---
-        document.querySelectorAll('[data-review-action]').forEach((button) => {
-          button.addEventListener('click', () => {
-              const action = button.getAttribute('data-review-action');
-              const reviewCard = button.closest('.review-card');
-              const likeBtn = reviewCard.querySelector('[data-review-action="like"]');
-              const dislikeBtn = reviewCard.querySelector('[data-review-action="dislike"]');
-              const likeCountEl = likeBtn.querySelector('[data-review-count="likes"]');
-              const dislikeCountEl = dislikeBtn.querySelector('[data-review-count="dislikes"]');
-              let likeCount = parseInt(likeCountEl.textContent);
-              let dislikeCount = parseInt(dislikeCountEl.textContent);
+        // --- Mock Articles ---
+        const articles = [
+            {
+                title: "The Importance of Accurate Measurements in Science",
+                content: "An exploration of how precise measurements form the bedrock of scientific discovery, from chemistry to physics."
+            },
+            {
+                title: "A Brief History of the Metric System",
+                content: "Discover the origins of the metric system during the French Revolution and its journey to becoming a global standard."
+            }
+        ];
 
-              if (button.classList.contains('active')) {
-                  // User is undoing their action
-                  if (action === 'like') {
-                      likeCountEl.textContent = likeCount - 1;
-                  } else {
-                      dislikeCountEl.textContent = dislikeCount - 1;
-                  }
-                  button.classList.remove('active');
-              } else {
-                  // User is casting a new vote
-                  if (action === 'like') {
-                      likeCountEl.textContent = likeCount + 1;
-                      if (dislikeBtn.classList.contains('active')) {
-                          dislikeCountEl.textContent = dislikeCount - 1;
-                          dislikeBtn.classList.remove('active');
-                      }
-                  } else { // dislike
-                      dislikeCountEl.textContent = dislikeCount + 1;
-                      if (likeBtn.classList.contains('active')) {
-                          likeCountEl.textContent = likeCount - 1;
-                          likeBtn.classList.remove('active');
-                      }
-                  }
-                  button.classList.add('active');
-              }
-          });
+        const articlesSection = document.getElementById('articles-section');
+        articlesSection.innerHTML = `
+            <div class="scrolling-wrapper relative w-full overflow-hidden">
+                <div class="scrolling-content flex gap-6">
+                    ${articles.map(article => `
+                        <div class="article-card glass-card rounded-lg p-6 min-w-[300px] flex-shrink-0 relative" style="background-glow: var(--accent-glow);">
+                            <h4 class="font-bold text-lg mb-2">${article.title}</h4>
+                            <p class="text-sm" style="color: var(--text-secondary);">${article.content}</p>
+                        </div>
+                    `).join('')}
+                    ${articles.map(article => `
+                        <div class="article-card glass-card rounded-lg p-6 min-w-[300px] flex-shrink-0 relative" style="background-glow: var(--accent-glow);">
+                            <h4 class="font-bold text-lg mb-2">${article.title}</h4>
+                            <p class="text-sm" style="color: var(--text-secondary);">${article.content}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+
+        const styleSheet = document.createElement("style");
+        styleSheet.type = "text/css";
+        styleSheet.innerText = `
+            .scrolling-wrapper {
+                -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+                mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+            }
+            .scrolling-content {
+                animation: scroll 30s linear infinite;
+            }
+            @keyframes scroll {
+                from { transform: translateX(0); }
+                to { transform: translateX(-50%); }
+            }
+            .article-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: inherit;
+                box-shadow: 0 0 20px 5px var(--accent-glow);
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+            .article-card:hover::before {
+                opacity: 1;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        // --- Search and FAQ ---
+        const searchFaqSection = document.getElementById('search-faq-section');
+        searchFaqSection.innerHTML = `
+            <input type="search" id="search-bar" placeholder="Search articles and FAQs..." class="form-input-custom w-full rounded-full h-10 px-4 text-sm mb-8">
+            <div id="faq-container" class="space-y-4"></div>
+        `;
+
+        const faqs = [
+            { q: "How accurate is this converter?", a: "Our converter uses standard international conversion factors for high accuracy." },
+            { q: "Can I convert other units?", a: "Currently, we support weight, temperature, and length conversions. More are coming soon!" },
+            { q: "Is this service free?", a: "Yes, our web-based converters are completely free to use." },
+            { q: "What is the 'stone' unit?", a: "The stone is a unit of weight in the imperial system, equal to 14 pounds." },
+            { q: "Why does the slider max out at 100kg?", a: "The slider is for quick adjustments. For larger values, you can type directly into the input fields." },
+            { q: "Is my data saved?", a: "No, we do not store any of your conversion data." },
+            { q: "How do I use the temperature converter?", a: "Navigate to the 'Converters' page and select the Temperature Converter." },
+            { q: "Can I use this on my mobile device?", a: "Absolutely! Our website is fully responsive and works great on all devices." }
+        ];
+
+        const faqContainer = document.getElementById('faq-container');
+        faqs.forEach(faq => {
+            const faqItem = document.createElement('div');
+            faqItem.classList.add('faq-item', 'glass-card', 'rounded-lg', 'p-4', 'cursor-pointer');
+            faqItem.innerHTML = `
+                <div class="faq-question font-medium flex justify-between items-center">
+                    <span>${faq.q}</span>
+                    <span class="faq-icon transform transition-transform duration-300">+</span>
+                </div>
+                <div class="faq-answer mt-2 text-sm" style="color: var(--text-secondary); display: none;">
+                    ${faq.a}
+                </div>
+            `;
+            faqContainer.appendChild(faqItem);
+        });
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+                const isVisible = answer.style.display === 'block';
+                answer.style.display = isVisible ? 'none' : 'block';
+                icon.textContent = isVisible ? '+' : '-';
+            });
+        });
+
+        // --- Active Filtering ---
+        const searchBar = document.getElementById('search-bar');
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+
+            // Filter articles
+            document.querySelectorAll('.article-card').forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(searchTerm) ? 'flex' : 'none';
+            });
+
+            // Filter FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(searchTerm) ? 'block' : 'none';
+            });
         });
         
         // --- Navigation ---
@@ -428,37 +493,11 @@
             }
         });
 
-        // --- Search Functionality ---
-        const searchInput = document.createElement('input');
-        searchInput.setAttribute('type', 'search');
-        searchInput.setAttribute('placeholder', 'Search articles and resources');
-        searchInput.classList.add('form-input-custom', 'w-full', 'rounded-full', 'h-10', 'px-4', 'text-sm');
-
-        const searchBarContainer = document.createElement('div');
-        searchBarContainer.classList.add('w-full', 'max-w-md', 'mx-auto', 'my-8');
-        searchBarContainer.appendChild(searchInput);
-
-        const mainElement = document.querySelector('main');
-        mainElement.insertBefore(searchBarContainer, mainElement.children[1]);
-
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const articles = document.querySelectorAll('.review-card'); // Using review cards as dummy articles
-
-            articles.forEach(article => {
-                const textContent = article.textContent.toLowerCase();
-                if (textContent.includes(searchTerm)) {
-                    article.style.display = 'flex';
-                } else {
-                    article.style.display = 'none';
-                }
-            });
-        });
 
         // --- Dropdown Functionality ---
         const dropdownContainer = document.createElement('div');
         dropdownContainer.classList.add('flex', 'justify-center', 'gap-4', 'my-4');
-        
+
         const createDropdown = (id, options) => {
             const select = document.createElement('select');
             select.id = id;
@@ -492,45 +531,6 @@
             }
         });
 
-        // --- FAQ Accordion ---
-        const faqContainer = document.createElement('section');
-        faqContainer.classList.add('w-full', 'max-w-2xl', 'mx-auto', 'mt-12');
-        faqContainer.innerHTML = `
-            <h3 class="text-2xl font-bold tracking-tight text-center mb-6" style="color: var(--text-primary);">Frequently Asked Questions</h3>
-            <div class="space-y-4">
-                <div class="faq-item glass-card rounded-lg p-4 cursor-pointer">
-                    <div class="faq-question font-medium flex justify-between items-center">
-                        <span>How accurate is the conversion?</span>
-                        <span class="faq-icon transform transition-transform duration-300">-</span>
-                    </div>
-                    <div class="faq-answer mt-2 text-sm" style="color: var(--text-secondary); display: none;">
-                        Our converter uses the standard international conversion factor of 2.20462262185 to ensure high accuracy. Results are rounded to three decimal places for convenience.
-                    </div>
-                </div>
-                <div class="faq-item glass-card rounded-lg p-4 cursor-pointer">
-                    <div class="faq-question font-medium flex justify-between items-center">
-                        <span>Can I convert other units besides kilograms and pounds?</span>
-                        <span class="faq-icon transform transition-transform duration-300">+</span>
-                    </div>
-                    <div class="faq-answer mt-2 text-sm" style="color: var(--text-secondary); display: none;">
-                        Currently, this tool is specialized for kilograms and pounds. We are working on adding more weight and mass units in the future. Check our 'Converters' page for other available tools.
-                    </div>
-                </div>
-            </div>
-        `;
-        mainElement.appendChild(faqContainer);
-
-        document.querySelectorAll('.faq-item').forEach(item => {
-            const question = item.querySelector('.faq-question');
-            const answer = item.querySelector('.faq-answer');
-            const icon = item.querySelector('.faq-icon');
-
-            question.addEventListener('click', () => {
-                const isVisible = answer.style.display === 'block';
-                answer.style.display = isVisible ? 'none' : 'block';
-                icon.textContent = isVisible ? '+' : '-';
-            });
-        });
 
 
         // --- Header Button Functionality ---
