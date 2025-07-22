@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=1" />
+    <meta name="description" content="An aesthetically advanced, functional weight and mass converter for converting between kilograms and pounds with a real-time slider." />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Epilogue:wght@400;500;700;900&family=Inter:wght@400;500;700"
+    />
+
+    <title>Advanced Weight Converter | Kilograms to Pounds</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      :root {
+        --bg-primary: rgb(31, 25, 42);
+        --bg-secondary: rgba(43, 37, 54, 0.5);
+        --text-primary: rgb(225, 217, 237);
+        --text-secondary: rgb(196, 187, 211);
+        --accent-violet: rgb(107, 33, 239);
+        --accent-orange: rgb(238, 79, 39);
+        --accent-glow: rgba(107, 33, 239, 0.4);
+        --shadow-color: rgba(0, 0, 0, 0.2);
+        --border-color: rgba(196, 187, 211, 0.2);
+      }
+      body {
+        background-color: var(--bg-primary);
+        background-image: radial-gradient(circle at 50% 0%, rgba(107, 33, 239, 0.15) 0%, transparent 40%);
+        font-family: 'Inter', 'Epilogue', sans-serif;
+        color: var(--text-primary);
+      }
+      .glass-card {
+        background-color: var(--bg-secondary);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 8px 32px 0 var(--shadow-color);
+      }
+      .form-input-custom {
+        background-color: rgba(31, 25, 42, 0.7) !important;
+        border: 1px solid var(--border-color) !important;
+        color: var(--text-primary) !important;
+        transition: all 0.3s ease;
+      }
+      .form-input-custom:focus {
+        border-color: var(--accent-violet) !important;
+        box-shadow: 0 0 0 3px var(--accent-glow) !important;
+        outline: none !important;
+      }
+      .form-input-custom::placeholder {
+        color: var(--text-secondary) !important;
+        opacity: 0.7;
+      }
+      .button-accent {
+        background-color: var(--accent-violet);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px -5px var(--accent-glow);
+      }
+      .button-accent:hover {
+        filter: brightness(1.2);
+        box-shadow: 0 6px 20px -5px var(--accent-glow);
+        transform: translateY(-2px);
+      }
+      .button-secondary {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+      }
+      .button-secondary:hover {
+        background-color: rgba(196, 187, 211, 0.1);
+      }
+      .slider-thumb-custom {
+        background-color: var(--accent-violet);
+        box-shadow: 0 0 10px 2px var(--accent-glow);
+      }
+      .slider-progress-custom {
+        background-color: var(--accent-violet);
+      }
+      .slider-track-custom {
+        background-color: rgba(31, 25, 42, 0.7);
+        border: 1px solid var(--border-color);
+      }
+      .review-card {
+        border: 1px solid var(--border-color);
+        background: linear-gradient(145deg, rgba(43, 37, 54, 0.3), rgba(31, 25, 42, 0.3));
+      }
+      .star-filled {
+        color: var(--accent-orange);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="relative flex size-full min-h-screen flex-col"
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid px-10 py-4" style="border-color: var(--border-color);">
+          <div class="flex items-center gap-4 text-white">
+            <div class="size-6 text-violet-400">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
+              </svg>
+            </div>
+            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]" style="color: var(--text-primary);">Aesthetic Converter</h2>
+          </div>
+          <nav class="flex flex-1 justify-end gap-8">
+            <div class="hidden md:flex items-center gap-9 text-sm font-medium" style="color: var(--text-secondary);">
+              <a href="#" class="hover:text-white transition-colors">Home</a>
+              <a href="#" class="hover:text-white transition-colors">Converters</a>
+              <a href="#" class="hover:text-white transition-colors">About</a>
+              <a href="#" class="hover:text-white transition-colors">Contact</a>
+            </div>
+            <div class="flex gap-2">
+              <button class="button-secondary flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 text-sm font-bold leading-normal tracking-[0.015em]">
+                <span class="truncate">Language</span>
+              </button>
+              <button class="button-secondary flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+                <div data-icon="Gear" data-size="20px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path></svg>
+                </div>
+              </button>
+            </div>
+          </nav>
+        </header>
+        <main class="flex flex-1 justify-center py-5 px-4 md:px-10">
+          <section class="layout-content-container flex flex-col max-w-4xl w-full mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="tracking-tight text-4xl md:text-5xl font-extrabold leading-tight px-4 pb-3 pt-5" style="color: var(--text-primary);">Weight & Mass Converter</h1>
+                <p class="text-lg" style="color: var(--text-secondary);">Instantly convert kilograms (kg) to pounds (lbs) and back.</p>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6 md:p-8 w-full max-w-lg mx-auto">
+              <div class="flex flex-col md:flex-row items-center gap-4">
+                <label class="flex flex-col w-full">
+                  <input
+                    id="kg-input"
+                    placeholder="Kilograms (kg)"
+                    class="form-input-custom w-full rounded-xl h-14 p-4 text-base"
+                    type="number"
+                  />
+                </label>
+                <div class="text-2xl font-bold" style="color: var(--text-secondary);">⇌</div>
+                <label class="flex flex-col w-full">
+                  <input
+                    id="lbs-input"
+                    placeholder="Pounds (lbs)"
+                    class="form-input-custom w-full rounded-xl h-14 p-4 text-base"
+                    type="number"
+                  />
+                </label>
+              </div>
+
+              <div class="@container mt-6">
+                <div class="relative flex w-full flex-col items-start justify-between gap-3 @[480px]:flex-row @[480px]:items-center">
+                  <div class="flex w-full shrink-[3] items-center justify-between">
+                    <p class="text-base font-medium leading-normal" style="color: var(--text-primary);">Adjust Value (0-100kg)</p>
+                    <p id="slider-value-mobile" class="text-sm font-normal leading-normal @[480px]:hidden" style="color: var(--text-secondary);">0</p>
+                  </div>
+                  <div class="flex h-4 w-full items-center gap-4">
+                    <div id="slider-track" class="slider-track-custom flex h-2 flex-1 rounded-full cursor-pointer">
+                      <div id="slider-progress" class="slider-progress-custom h-full rounded-full w-[0%]"></div>
+                      <div class="relative"><div id="slider-thumb" class="slider-thumb-custom absolute -top-1 size-4 rounded-full"></div></div>
+                    </div>
+                    <p id="slider-value-desktop" class="text-sm font-normal leading-normal hidden @[480px]:block" style="color: var(--text-secondary);">0</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex px-4 py-5 justify-center">
+                <button
+                  id="convert-btn"
+                  class="button-accent flex w-full md:w-auto min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 text-white text-base font-bold"
+                >
+                  <span class="truncate">Convert</span>
+                </button>
+              </div>
+              
+              <p id="results-text" class="text-base font-normal pb-3 pt-1 text-center" style="color: var(--text-secondary);">Results will appear here.</p>
+            </div>
+            
+            <h3 class="text-2xl font-bold tracking-tight px-4 pb-4 pt-12 text-center" style="color: var(--text-primary);">User Reviews</h3>
+            <div class="grid md:grid-cols-2 gap-6 p-4">
+              <div class="review-card flex flex-col gap-4 rounded-xl p-6">
+                <div class="flex items-center gap-3">
+                  <img class="rounded-full size-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoecV2KhWFXTeIQZe2TskX6qHUZjt9FqQPui-deTC6mKVOA5yBjJDtGQjm1gLOg-rqXczYS-N9YunG9IChVT6Qa4lT9OtP8Ik3L8dze0ATpMVcDeGPb81DHt_xt66s1mnKgN6GwWos0Y3p9XS48xfp_1LeGx760RBB1CmK8K65AYnJlA5MVEKvQRZ2dC8Z9nj5BFqYIbQk3-9WNDdyzaF_IlAakY_7gKi3l9_dLQLtwWDPLkgshI7TB5gkNVWqQ-9OE_2YGrbpMnA" alt="Avatar of Ethan Carter"/>
+                  <div>
+                    <p class="font-medium leading-normal" style="color: var(--text-primary);">Ethan Carter</p>
+                    <p class="text-sm font-normal leading-normal" style="color: var(--text-secondary);">2023-09-15</p>
+                  </div>
+                </div>
+                <div class="flex gap-0.5">
+                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
+                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
+                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
+                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
+                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
+                </div>
+                <p class="text-base font-normal leading-relaxed" style="color: var(--text-secondary);">This converter is incredibly accurate and easy to use. I needed it for my international travel, and it worked perfectly!</p>
+                <div class="flex gap-4 mt-auto" style="color: var(--text-secondary);">
+                  <button data-review-action="like" class="flex items-center gap-2 hover:text-white transition-colors">
+                    <div class="text-inherit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path></svg></div>
+                    <p data-review-count="likes" class="text-inherit">10</p>
+                  </button>
+                  <button data-review-action="dislike" class="flex items-center gap-2 hover:text-white transition-colors">
+                    <div class="text-inherit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path></svg></div>
+                    <p data-review-count="dislikes" class="text-inherit">1</p>
+                  </button>
+                </div>
+              </div>
+              <div class="review-card flex flex-col gap-4 rounded-xl p-6">
+                 <div class="flex items-center gap-3">
+                  <img class="rounded-full size-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPEBvAFSFXd47-7OBgZBXR9F24FU2qngsQJCqNI-UA9uruBnVZtiSmzkCT1499pi3pukLA808saL4BrMs36rMAjj0XTP2xTNrvTDmsIpwMVfOI2ev9bqZYhi1lPMW-dvsKkuo_fBV48LJ6ciX3galS_wAZ17jJwwVa8GhVmHnAKVeae3ANMyHeW0TwTwJ7nm7BdVQifVr8Q-YCIKVu2UDaahvbXDt0CFsroAbBrMkZP_Q7Y_sGZ2HlRsL6rCgd9QbgAGb1yf2R1d4" alt="Avatar of Sophia Bennett"/>
+                  <div>
+                    <p class="font-medium leading-normal" style="color: var(--text-primary);">Sophia Bennett</p>
+                    <p class="text-sm font-normal leading-normal" style="color: var(--text-secondary);">2023-10-20</p>
+                  </div>
+                </div>
+                <div class="flex gap-0.5">
+                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
+                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
+                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
+                  <div class="star-filled" data-icon="Star" data-size="20px" data-weight="fill"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg></div>
+                </div>
+                <p class="text-base font-normal leading-relaxed" style="color: var(--text-secondary);">A reliable tool for quick conversions. The interface is clean, and the results are consistent.</p>
+                <div class="flex gap-4 mt-auto" style="color: var(--text-secondary);">
+                  <button data-review-action="like" class="flex items-center gap-2 hover:text-white transition-colors">
+                    <div class="text-inherit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path></svg></div>
+                    <p data-review-count="likes" class="text-inherit">8</p>
+                  </button>
+                  <button data-review-action="dislike" class="flex items-center gap-2 hover:text-white transition-colors">
+                    <div class="text-inherit"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path></svg></div>
+                    <p data-review-count="dislikes" class="text-inherit">2</p>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <footer class="w-full mt-12 py-8 border-t" style="border-color: var(--border-color);">
+            <div class="max-w-4xl mx-auto px-4 text-center" style="color: var(--text-secondary);">
+                <p class="text-sm">&copy; 2025 Aesthetic Converter. All Rights Reserved.</p>
+                <p class="text-xs mt-2 opacity-70">Designed to demonstrate advanced aesthetics and functionality in a single-page application.</p>
+            </div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // --- Configuration ---
+        const KG_TO_LBS_FACTOR = 2.20462;
+        const MAX_SLIDER_VAL = 100; // Represents 100 kg
+
+        // --- Element Selectors ---
+        const kgInput = document.getElementById('kg-input');
+        const lbsInput = document.getElementById('lbs-input');
+        const convertBtn = document.getElementById('convert-btn');
+        const resultsText = document.getElementById('results-text');
+
+        // Slider elements
+        const sliderProgress = document.getElementById('slider-progress');
+        const sliderThumb = document.getElementById('slider-thumb');
+        const sliderValueDesktop = document.getElementById('slider-value-desktop');
+        const sliderValueMobile = document.getElementById('slider-value-mobile');
+
+        // --- Core Conversion Functions ---
+        const convertKgToLbs = (kg) => (kg * KG_TO_LBS_FACTOR).toFixed(3);
+        const convertLbsToKg = (lbs) => (lbs / KG_TO_LBS_FACTOR).toFixed(3);
+
+        // --- Update UI Function ---
+        const updateConverter = (source, value) => {
+          let kg = 0;
+          let lbs = 0;
+
+          const numValue = parseFloat(value);
+          if (isNaN(numValue) || numValue < 0) {
+            if (source === 'kg') lbsInput.value = '';
+            else kgInput.value = '';
+            updateSlider(0);
+            updateResultsText(0,0);
+            return;
+          }
+
+          if (source === 'kg') {
+            kg = numValue;
+            lbs = convertKgToLbs(kg);
+            lbsInput.value = lbs;
+          } else if (source === 'lbs') {
+            lbs = numValue;
+            kg = convertLbsToKg(lbs);
+            kgInput.value = kg;
+          }
+
+          updateSlider(kg);
+          updateResultsText(kg, lbs);
+        };
+
+        const updateSlider = (kgValue) => {
+          const percentage = Math.min((kgValue / MAX_SLIDER_VAL) * 100, 100);
+          sliderProgress.style.width = `${percentage}%`;
+          sliderThumb.style.left = `calc(${percentage}% - 8px)`;
+
+          const displayValue = Math.round(kgValue);
+          sliderValueDesktop.textContent = displayValue;
+          sliderValueMobile.textContent = displayValue;
+        };
+
+        const updateResultsText = (kg, lbs) => {
+          if (!kg && !lbs) {
+            resultsText.textContent = 'Results will appear here.';
+          } else {
+            resultsText.textContent = `${kg || 0} kg is equal to ${lbs || 0} lbs.`;
+          }
+        };
+
+        // --- Event Listeners ---
+        kgInput.addEventListener('input', (e) => updateConverter('kg', e.target.value));
+        lbsInput.addEventListener('input', (e) => updateConverter('lbs', e.target.value));
+        convertBtn.addEventListener('click', () => {
+          if (kgInput.value) {
+            updateConverter('kg', kgInput.value);
+          } else if (lbsInput.value) {
+            updateConverter('lbs', lbsInput.value);
+          }
+        });
+
+        // --- User Review Interaction ---
+        document.querySelectorAll('[data-review-action]').forEach((button) => {
+          button.addEventListener('click',() => {
+              const parent = button.closest('.flex.gap-4');
+              if (button.hasAttribute('data-clicked')) return;
+              
+              const countEl = button.querySelector('[data-review-count]');
+              let currentCount = parseInt(countEl.textContent, 10);
+              countEl.textContent = currentCount + 1;
+              
+              parent.querySelectorAll('[data-review-action]').forEach(btn => {
+                btn.setAttribute('data-clicked', 'true');
+                btn.style.cursor = 'not-allowed';
+                btn.style.opacity = '0.6';
+              });
+            },{ once: true });
+        });
+        
+        // --- Placeholder Functionality for Nav Links ---
+        document.querySelectorAll('a[href="#"]').forEach((link) => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert(`Navigation to "${link.textContent.trim()}" is a placeholder.`);
+          });
+        });
+        
+        // --- Placeholder for Header Buttons ---
+        document.querySelector('button > span.truncate')?.parentElement.addEventListener('click', () => alert('Language selection is a placeholder.'));
+        document.querySelector('div[data-icon="Gear"]')?.parentElement.addEventListener('click', () => alert('Settings panel is a placeholder.'));
+
+      });
+    </script>
+  </body>
+</html>
